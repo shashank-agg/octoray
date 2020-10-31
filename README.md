@@ -34,5 +34,18 @@ This emits an IP address, which can be used to register Dask clients and workers
 ```$ dask-worker <IP_OF_SCHEDULER> --nthreads 1 --memory-limit 0 --no-nanny```
 
 ## Examples
-1. GZIP accleration using Vitis Data Compression Library
-2. CNV accelration using FINN (`cnv_w1a1_u50/`)
+1. `gzip_compression/`: GZIP accleration using Vitis Data Compression Library
+
+From the man page of gzip (https://linux.die.net/man/1/gzip):
+
+`Multiple compressed files can be concatenated. In this case, gunzip will extract all members at once`
+Hence, the concatenation of several gzip files is also a valid gzip file. We use this principle to split up the task of compressing a file into 2 parts, compressing these parts separately, and then concatenating them.
+
+The following plot shows the acceleration achieved on using 2 U50 FPGAs to compress files of various sizes. 
+In both cases, the Dask client and the workers were located on separate machines in the Nimbix cloud. The time shown is the time taken to compress the entire input file. It does NOT include the transmission and disk I/O time.
+
+
+![Perf comparision](images/gzip-1-vs-2.png)
+
+
+2. `cnv_w1a1_u50/`: CNV accelration using FINN

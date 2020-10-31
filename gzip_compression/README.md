@@ -17,7 +17,7 @@ Note: For this demo, we are using the branch `2019.2` of https://github.com/Xili
 
 Copy them into this directory:
 
-```$ cp $VITIS_LIBRARIES_PATH/data_compression/L3/demos/gzip_hbm/build .```
+```$ cp -r $VITIS_LIBRARIES_PATH/data_compression/L3/demos/gzip_hbm/build .```
 
 4. This assumes a Python version > 3.6. Install dependencies using:
 
@@ -33,4 +33,4 @@ Note the IP address of the scheduler (of the form tcp://x.x.x.x:8786)
 
 ```$ dask-worker tcp://x.x.x.x:8786 --nthreads 1 --memory-limit 0 --no-nanny```
 
-7. Run the `dask.ipynb` notebook using jupyter (```$ jupyter notebook```)
+7. Run the `dask.ipynb` notebook using jupyter (```$ jupyter notebook```). This notebook contains a Dask client to compress a file using multiple FPGAs, and validates the output using Linux's builtin gzip tool.

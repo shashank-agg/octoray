@@ -58,28 +58,10 @@ class xfZlibWrapper:
 
 if __name__ == '__main__':
     XCLBIN_PATH = b'build/xclbin_xilinx_u50_gen3x16_xdma_201920_3_sw_emu/compress_decompress.xclbin'
-    IN_FILE_PATH = 'Makefile'
+    IN_FILE_PATH = 'sample.txt'
     OUT_FILE_PATH = 'sample.gz'
     
     xfZlib = xfZlibWrapper(XCLBIN_PATH)
-
-    in_data = b"""123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789"""
-    # in_data += b"\0"
-    in_ptr = c_char_p(in_data)
-    input_size = len(in_data)
-
-    print("Input size before compress:", input_size)
-    out_data = xfZlib.compress_buffer(in_ptr,input_size)
-    # print("Output pounter ", out_data.value)
-    print("Output pounter ", type(out_data))
-    print("Output data ", out_data)
-    with open('temp.zlib', 'wb') as f:
-        f.write(out_data)
-    # c_str = cast(size, c_char_p)
-    # print(c_str.value)
-    # size = xfZlib.compress_file(IN_FILE_PATH, OUT_FILE_PATH)
-    # print(f'Compressed from {os.path.getsize(IN_FILE_PATH)} to {size} bytes')
-
-    # size = xfZlib.decompress_file(b"hello.txt.gz", b"decompressed")
-    # print(f'Decompressed from {os.path.getsize("hello.txt.gz")} to {size} bytes')
+    size = xfZlib.compress_file(IN_FILE_PATH, OUT_FILE_PATH)
+    print(f'Compressed from {os.path.getsize(IN_FILE_PATH)} to {size} bytes')
 
