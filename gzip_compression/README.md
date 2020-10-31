@@ -1,29 +1,36 @@
 ## Build instructions
 Note: For this demo, we are using the branch `2019.2` of https://github.com/Xilinx/Vitis_Libraries
 
+1. Clone the Vitis_Libraries repo:
 
+```$ git clone --single-branch --branch 2019.2 https://github.com/Xilinx/Vitis_Libraries``` 
 
-1. For this example, we use the `libz.so` shared library object. First, append a thin C wrapper to the source file `zlib.cpp`:
-```cat wrapper.c >> Vitis_Libraries/data_compression/L3/src/zlib.cpp```
+```$ export VITIS_LIBRARIES_PATH=/path/to/vitis_libraries```
 
-2. Generate the `xclbin` and `libz.so` file
-```cd Vitis_Libraries/data_compression/L3/demos/gzip_hbm && make lib xclbin TARGET=hw DEVICE=xilinx_u50_gen3x16_xdma_201920_3```
+2. For this example, we use the `libz.so` shared library object. First, append a thin C wrapper to the source file `zlib.cpp`:
 
-Copy them here:
+```$ cat wrapper.c >> $VITIS_LIBRARIES_PATH/data_compression/L3/src/zlib.cpp```
 
-```cp Vitis_Libraries/data_compression/L3/demos/gzip_hbm/build . ```
+3. Generate the `xclbin` and `libz.so` file
 
-3. This assumes a Python version > 3.6. Install dependencies using:
-```pip3 install jupyter "dask[complete]" bokeh```
+```$ cd $VITIS_LIBRARIES_PATH/data_compression/L3/demos/gzip_hbm && make lib xclbin TARGET=hw DEVICE=xilinx_u50_gen3x16_xdma_201920_3```
 
-4. Run the dask scheduler using:
+Copy them into this directory:
 
-```dask-scheduler```
+```$ cp $VITIS_LIBRARIES_PATH/data_compression/L3/demos/gzip_hbm/build .```
+
+4. This assumes a Python version > 3.6. Install dependencies using:
+
+```$ pip3 install jupyter "dask[complete]" bokeh```
+
+5. Run the dask scheduler using:
+
+```$ dask-scheduler```
 
 Note the IP address of the scheduler (of the form tcp://x.x.x.x:8786)
 
-5. Run the dask worker (using the IP above).
+6. Run the dask worker (using the IP above).
 
-```dask-worker tcp://x.x.x.x:8786 --nthreads 1 --memory-limit 0 --no-nanny```
+```$ dask-worker tcp://x.x.x.x:8786 --nthreads 1 --memory-limit 0 --no-nanny```
 
-6. Run the `dask.ipynb` notebook using jupyter (```$ jupyter notebook```)
+7. Run the `dask.ipynb` notebook using jupyter (```$ jupyter notebook```)

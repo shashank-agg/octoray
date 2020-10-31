@@ -1,3 +1,8 @@
+
+
+
+// Extra C wrapper to allow access using Python's Ctypes library
+
 extern "C" 
 {
     void * xfZlib_constructor_wrapper( char * xclbin_path, uint8_t max_cr, uint8_t cd_flow, uint8_t device_id, uint8_t profile, uint8_t d_type )
