@@ -73,9 +73,9 @@ The machine used is an Intel Xeon CPU (E5-2640 v3  @ 2.60GHz) consisting of 8 co
 
 ---
 ### 2. **`cnv_w1a1_u50`** (CNV acceleration using FINN)
-In this example, the FINN library was used to build a binarized convolutional network for the U50 FPGA. The CNV-W1A1 network is used to classify a 32x32 RGB image to one of CIFAR-10 dataset's classes. The bitstream was generated using the notebook here - https://github.com/Xilinx/finn/blob/e443a5859066a410a63c08dcfec4a90527ca24be/notebooks/end2end_example/cnv_end2end_example.ipynb.
+In this example, the FINN library was used to build a binarized convolutional network for the U50 FPGA. The CNV-W1A1 network is used to classify a 32x32 RGB image to one of CIFAR-10 dataset's classes. The bitstream was generated with the help of the test cases here - https://github.com/Xilinx/finn/blob/master/tests/end2end/test_end2end_bnn_pynq.py.
 
 
-Once the accelerator is built, we can use parallelism to improve the speed of inference. In our setup, we split the test dataset into 2 parts and used two accelerators deployed on separate Nimbix instances to classify these parts in parallel. As a result, a **speedup of 2x** was observed in the classification time when compared to using just 1 FPGA.
+Once the accelerator is built, we can use data parallelism to improve the speed of inference. In our setup, we split the test dataset into 2 parts and used two accelerators deployed on separate Nimbix instances to classify these parts in parallel. As a result, a **speedup of 2x** was observed in the classification time when compared to using just 1 FPGA.
 
 ![Perf comparision](images/cnv-1-vs-2.png)
