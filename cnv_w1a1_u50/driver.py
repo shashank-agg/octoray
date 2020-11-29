@@ -13,7 +13,7 @@ from finn.core.datatype import DataType
 from pynq.ps import Clocks
 
 class FINNAccelDriver():
-    def __init__(self, N, bitfile, platform="alveo"):
+    def __init__(self, N, bitfile, platform="alveo", device_name="xilinx_u50_gen3x16_xdma_201920_3"):
         """Instantiate the FINN accelerator driver.
         Gets batchsize (N) as integer and path to bitfile as string."""
         self.platform = platform
@@ -30,7 +30,7 @@ class FINNAccelDriver():
         self.ishape_packed = (N, 32, 32, 1, 3)   # datatype np.uint8
         self.oshape_packed = (N, 1, 1)  # datatype np.uint8
         # load bitfile and set up accelerator
-        self.device = [i for i in Device.devices if i.name == 'xilinx_u50_gen3x16_xdma_201920_3'][0]
+        self.device = [i for i in Device.devices if i.name == device_name][0]
         Device.active_device = self.device
         self.ol = Overlay(bitfile)
         # neuron folding factor of output = iterations per sample
