@@ -21,7 +21,7 @@ Assuming a Dask cluster is already set up, the steps involved to parallelize any
 
 ## Advantages
 
-1. This architecture can be used in both setups - one host with multiple attached FPGAs, or multiple (remotely connected) hosts each with their own FPGA. Several dask workers can be spawned on the same or different machines, and can all communicate indirectly with each other using a scheduler process.
+1. This architecture can be used in both setups - one host with multiple attached FPGAs, or multiple (remotely connected) hosts each with their own FPGA. Several dask workers can be spawned on the same or different machines, and each is associated to one FPGA. Any number of FPGAs may be connected this way, and we will observe speedup as long as the network is not saturated.
 
 2. Different types of kernels/accelerators can be used. For example, kernels built using Vitis libraries, FINN, or other custom kernels can be used as long as a Python interface to them is available. In this project, we have used a Vitis library kernel and a FINN kernel, and written Python drivers for these. Also, any accelerator built for a PYNQ-supported platform can be used.
 
