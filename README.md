@@ -70,16 +70,16 @@ The machine used is an Intel Xeon CPU (E5-2640 v3  @ 2.60GHz) consisting of 8 co
 
 (Units: MBps)
 
-The single FPGA implementation is over **2 times** faster than a parallalised software implementation.
+The 2-FPGA implementation is about **4 times** faster than a parallalised software implementation.
 
 ---
 ### 2. **`cnv_w1a1_u50`** (CNV acceleration using FINN)
 In this example, the FINN library was used to build a binarized convolutional network for the U50 FPGA. The CNV-W1A1 network is used to classify a 32x32 RGB image to one of CIFAR-10 dataset's classes. The bitstream was generated with the help of the test cases here - https://github.com/Xilinx/finn/blob/master/tests/end2end/test_end2end_bnn_pynq.py.
 
 
-Once the accelerator is built, we can use data parallelism to improve the speed of inference. In our setup, we split the test dataset into 2 parts and used two accelerators deployed on separate Nimbix instances to classify these parts in parallel. As a result, a **speedup of 2x** was observed in the classification time (inference time + data copying time to/from the FPGA) when compared to using just 1 FPGA.
+Once the accelerator is built, we can use data parallelism to improve the speed of inference. In our setup, we split the test dataset into 8 parts and used 8 accelerators from ETH's XACC cluster to classify these parts in parallel. As a result, a **speedup of 8x** was observed in the classification time (inference time + data copying time to/from the FPGA) when compared to using just 1 FPGA.
 
-![Perf comparision](images/cnv-1-vs-2.png)
+![Perf comparision](images/cnv-1-vs-8.png)
 
 ### Comparision to software baseline:
 This setup is also faster than a purely software (SW) implementation. A pretained version of the same network (CNV-W1A1) from Xilinx's Brevitas (https://github.com/Xilinx/brevitas/tree/master/brevitas_examples/bnn_pynq) framework was used as a software baseline.
@@ -93,4 +93,4 @@ The table below shows the throughput values for the networks:
 
 (Units: images/second)
 
-The single FPGA implementation is roughly **6 times** faster than a software implementation of the same neural network running on a CPU.
+The 2-FPGA implementation is almost **12 times** faster than a software implementation of the same neural network running on a CPU.
