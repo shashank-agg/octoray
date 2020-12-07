@@ -23,13 +23,13 @@ Copy them into this directory:
 
 ```$ pip3 install jupyter "dask[complete]" bokeh```
 
-5. Run the dask scheduler using:
+5. Run the Dask scheduler using:
 
 ```$ dask-scheduler```
 
 Note the IP address of the scheduler (of the form tcp://x.x.x.x:8786)
 
-6. Run the dask worker (using the IP above).
+6. Run the Dask worker (using the IP above).
 
 ```$ dask-worker tcp://x.x.x.x:8786 --nthreads 1 --memory-limit 0 --no-nanny```
 
