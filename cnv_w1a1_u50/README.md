@@ -6,11 +6,11 @@
 
 ```pip3 install pynq jupyter "dask[complete]" bokeh matplotlib```
 
-2. Run the dask scheduler using:
+2. Run the Dask scheduler using:
 
 ```$ dask-scheduler```
 
-3. Run the dask worker (using the IP from above) in this directory.
+3. Run the Dask worker (using the IP from above) in this directory.
 
 ```$ XCLBIN_PATH=<path-to-xclbin-file> DEVICE_NAME=<name-of-device> dask-worker tcp://x.x.x.x:8786 --nthreads 1 --memory-limit 0 --no-nanny```
 

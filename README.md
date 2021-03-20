@@ -1,4 +1,4 @@
-# Octoray
+# OctoRay
 
 In this repo, we demonstrate 2 examples of using Dask (https://github.com/dask/dask) to parallelize data analytics on multiple U50 FPGAs.
 
@@ -11,7 +11,7 @@ The idea is based on the principle of data parallelism. It works by splitting th
 
 
 Assuming a Dask cluster is already set up, the steps involved to parallelize any task are:
-1. A dask client reads the input data (from a file, socket, etc.).
+1. A Dask client reads the input data (from a file, socket, etc.).
 
 2. The client detects the number of workers in the cluster. It splits the input data and scatters the chunks to the workers.
 
@@ -21,14 +21,14 @@ Assuming a Dask cluster is already set up, the steps involved to parallelize any
 
 ## Advantages
 
-1. This architecture can be used in both setups - one host with multiple attached FPGAs, or multiple (remotely connected) hosts each with their own FPGA. Several dask workers can be spawned on the same or different machines, and each is associated to one FPGA. Any number of FPGAs may be connected this way, and we will observe speedup as long as the network is not saturated.
+1. This architecture can be used in both setups - one host with multiple attached FPGAs, or multiple (remotely connected) hosts each with their own FPGA. Several Dask workers can be spawned on the same or different machines, and each is associated to one FPGA. Any number of FPGAs may be connected this way, and we will observe speedup as long as the network is not saturated.
 
 2. Different types of kernels/accelerators can be used. For example, kernels built using Vitis libraries, FINN, or other custom kernels can be used as long as a Python interface to them is available. In this project, we have used a Vitis library kernel and a FINN kernel, and written Python drivers for these. Also, any accelerator built for a PYNQ-supported platform can be used.
 
 3. Since we use popular Python libraries (Dask, Numpy, etc.), this makes the system hardware agnostic. As long as we can compile an accelerator for the available hardware platform, the system can be deployed on that platform. We have run this setup on various hardware platforms such as Pynq-Z1 boards, AWS F1 instances, Nimbix cloud instances, and our in-house Alveo servers.
 
 
-## Setting up  a dask cluster
+## Setting up  a Dask cluster
 This consists of two steps:
 1. Starting a `dask scheduler`. This is a Python process which is responsible for scheduling tasks on the worker and maintaining the application state.
 
