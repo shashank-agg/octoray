@@ -61,16 +61,16 @@ This setup is faster than a purely software (SW) implementation. The below table
 1. Linux's inbuilt `gzip` tool (lowest compression level - fastest)
 2. `pigz` tool - A multiprocessor implementation of gzip (lowest compression level - fastest) (https://zlib.net/pigz/)
 
-The machine used is an Intel Xeon CPU (E5-2640 v3  @ 2.60GHz) consisting of 8 cores.
+The machine used is a 2.7 GHz Dual-Core Intel Core i5 processor.
 
 
  `gzip` SW throughput | `pigz` SW throughput | Dask 1 worker | Dask 2 workers
 ------------ | ------------- | ------------- | ------------- 
-30.4 | 157.56 | 348.3 |  627.8 
+24.3 | 40.6 | 348.3 |  627.8 
 
 (Units: MBps)
 
-The 2-FPGA implementation is about **4 times** faster than a parallalised software implementation.
+The 2-FPGA implementation is about **15 times** faster than a parallalised software implementation.
 
 ---
 ### 2. **`cnv_w1a1_u50`** (CNV acceleration using FINN)
@@ -84,13 +84,13 @@ Once the accelerator is built, we can use data parallelism to improve the speed 
 ### Comparision to software baseline:
 This setup is also faster than a purely software (SW) implementation. A pretained version of the same network (CNV-W1A1) from Xilinx's Brevitas (https://github.com/Xilinx/brevitas/tree/master/brevitas_examples/bnn_pynq) framework was used as a software baseline.
 
-The machine used is an Intel Xeon CPU (Silver 4114 @ 2.20GHz) (no GPU).
+The machine used is a 2.7 GHz Dual-Core Intel Core i5 processor (no GPU).
 
 The table below shows the throughput values for the networks:
  `brevitas` SW model |  Dask 1 worker | Dask 2 workers
 ------------ | ------------- | ------------- 
-498.24 | 2944.96 | 5709.42
+232.56 | 2944.96 | 5709.42
 
 (Units: images/second)
 
-The 2-FPGA implementation is almost **12 times** faster than a software implementation of the same neural network running on a CPU.
+The 2-FPGA implementation is almost **24 times** faster than a software implementation of the same neural network running on a CPU.

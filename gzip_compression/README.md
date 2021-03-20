@@ -34,3 +34,9 @@ Note the IP address of the scheduler (of the form tcp://x.x.x.x:8786)
 ```$ dask-worker tcp://x.x.x.x:8786 --nthreads 1 --memory-limit 0 --no-nanny```
 
 7. Run the `dask.ipynb` notebook using jupyter (```$ jupyter notebook```). This notebook contains a Dask client to compress a file using multiple FPGAs, and validates the output using Linux's builtin gzip tool.
+
+
+### Calculate software baseline
+```
+    python3 softwarebaseline.py 
+```
